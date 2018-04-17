@@ -1,0 +1,377 @@
+.underline {
+  display: inline-block;
+  border-bottom: 10px solid #8cd5f5;
+  font-size: inherit;
+  height: 20px;
+  font-weight: bold;
+}
+
+
+.service_container {  
+  margin-top: -70px;
+  position: relative;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.service_container .advantages {
+  width: 100%;
+  overflow: hidden;
+}
+.service_container .halfpart {
+  height: 400px;
+  margin-bottom: 20px;
+  float: left;
+}
+.service_container .col4 {
+  width: 40%;
+}
+.service_container .col6 {
+  width: 60%;
+}
+.service_container .toright {
+  margin-left: 40%;
+}  
+.service_container .toleft {
+  margin-top: -440px;
+}
+.service_container .textpart img {
+  margin-top: 47px;
+  width: 84px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.service_container .textpart p {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 14px;
+  color: #666666;
+}
+.service_container .textpart h1 {
+  text-align: center;
+  font-size: 22px;
+  color: #000000;
+  max-width: 80%;
+  margin: 30px auto;
+}
+.article {
+  width: 48%;
+  margin: 0;
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+.article p {
+  margin: 0;
+  text-align: center;
+}
+.article1 {
+  padding-top: 62px;
+  padding-bottom: 22px;
+}
+.article1 p {
+  font-size: 26px;
+  color: #000000;
+  line-height: 1.6em;
+}
+.article2 {
+  padding-top: 90px;
+}
+.article2 p, .article4 p ,.article8 p {
+  font-size: 2em;
+  color: #666666;
+  line-height: 1.4em;
+}
+.article3 {
+  padding-bottom: 60px;
+}
+.article4 {
+  padding-top: 60px;
+}
+.article5 {
+  padding-top: 40px;
+  padding-bottom: 20px;
+}
+.article3 p, .article5 p, .article9 p  {
+  font-size: 26px;
+  color: #000000;
+  text-align: center;
+}
+.article6 {
+  width: 100%;
+  margin: 0;
+  padding-bottom: 58px;
+}
+.article6 img {
+  width: 100%;
+}
+.article7 {
+  padding-top: 66px;
+}
+.article7 p {
+  font-size: 1.25em;
+  color:#000000;
+}
+.help_container {
+  width: 100%;
+  background-color: #f9f9f9;
+}
+.help_container .helpcase_container {
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 65px;
+}
+.help_container .helpcase_container .help_case {
+  float: left;
+  width: 33%;
+  padding-top: 60px;
+}
+.help_container .help_case img{
+  width: 32%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.help_container .help_case .description {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.help_container .help_case .description h1 {
+  text-align: center;
+  font-size: 1.0em;
+  margin-top: 17px;
+  margin-bottom: 17px;
+}
+.help_container .help_case .description p{
+  text-align: center;
+  font-size: .875em;
+}
+.article8 {
+  padding-top: 96px;
+}
+.article9 {
+  padding-top: 25px;
+  padding-bottom: 73px;
+}
+.cooperation_container .labellist {
+  width: 70%;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 17px;
+}
+.cooperation_container .labellist .label {
+  margin-left: 39px;
+  margin-right: -8px;
+  margin-top: 17px;
+  margin-bottom: 20px;
+}
+.cooperation_container .labellist .label button {
+  height: 43px;
+}
+.contact_container {    
+  margin-top: 0;
+}
+.contact_container .contactmail p {
+  padding-bottom: 105px;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+.brand_width {
+  width: 16.46% !important;
+}
+.brand_no_width {
+  width: 0 !important;
+  border: none !important;
+}
+.footer_container {
+  background-color: #ffffff;
+}
+.footer_container .about_container {
+  border-top: 1px solid #d5d7d8;
+}
+.experience_container {
+  width: calc(100% - 40px);
+  padding: 20px;
+  margin-bottom: 40px;
+  overflow: hidden;
+}
+.experience_container .experience {
+  width: calc(50% - 40px);
+  padding: 20px;
+  float: left;
+}
+.experience_container .experience img {
+  width: 100%;
+  clear: both;
+}
+.experience_container .experience .description {
+  width: 100%;
+  background-color: #f9f9f9;
+  height: 173px;
+}
+.experience_container .experience .description h1 {
+  font-size: 20px;
+  text-align: center;
+  color: #000000;
+  margin: 0;
+  padding-top: 32px;
+  padding-bottom: 24px;
+}
+.experience_container .experience .description p {
+  font-size: 14px;
+  text-align: center;
+  color: #666666;
+  width: 70%;
+  margin: 0 auto;
+}
+@media (max-width:768px) {
+  .fixedbar img {
+    width: 28.53%;}
+    .service_container {
+      margin-top: 0;
+    }
+    .article {
+      width: 80%;
+    }
+    .article1 {
+      padding-top: 40px;
+      padding-bottom: 20px;
+    }
+    .article2 {
+      padding-top: 20px;
+    }
+    .article3{
+      padding-top: 0px;
+      padding-bottom: 40px;
+    }
+    .article4 {
+      padding-top: 43px;
+    }
+    .article5{
+      padding-top: 50px;
+      padding-bottom: 23px;
+    }
+    .article9 {
+      padding-top: 10px;
+      padding-bottom: 20px;
+      width: 80%;    
+      padding-bottom: 45px;
+    }
+    .article6 {
+      width: 100%;
+    }
+    .article7, .article8 {
+      padding-top: 38px;
+    }
+    .article1 p, .article2 p, .article4 p, .article8 p  {
+      /*font-size: 1.25em;*/
+      font-size: 22px;
+      width: 100%;
+      line-height: 30px;
+      margin: 0 auto;
+    }
+    .article8 p {
+      font-size: 1.3em;
+      line-height: 1.5em;
+    }
+    .article3 p, .article5 p, .article9 p {
+      font-size: 22px;
+    }
+    .article7 p {
+      font-size: 1.0em;
+    }
+    .experience_container .experience {
+      width: 100%;
+      padding:0;
+      padding-bottom: 20px;
+    }
+    .experience_container .experience .description p {
+      width: 80%;
+    }
+    .service_container .halfpart {
+      width: 100%;
+      height: auto;
+      margin-bottom: 0;
+    }
+    .service_container .textpart img {
+      margin-top: 0;  
+    }
+    .service_container .advantages .toright img {
+      margin-right: 45px;
+      margin-left: auto;
+    }
+    .service_container .advantages .toright p {
+      margin-right: 45px;
+      margin-left: auto;
+      text-align: right;
+    }
+    .service_container .toright {
+      margin-left: 0;
+    }
+    .service_container .toleft {
+      margin-top: 0;
+    }
+    .service_container .imgpart img {
+      width: 100%;
+    }
+    .help_container .help_case img {
+      width: 30%;
+    }
+    .help_container .helpcase_container {
+      padding-bottom: 45px;
+    }
+    .help_container .helpcase_container .help_case {
+      width: 100%;
+      padding-top: 32px;
+    }
+    .help_container .help_case .description {
+      margin-left: 10%;
+      margin-right: 10%;
+    }
+    .help_container .help_case .description p {
+      color: #666666;
+    }  
+    .cooperation_container .labellist {
+      margin-bottom: 10px;
+      width: 100%;
+    }
+    .cooperation_container .labellist .label {
+      width: 22%;
+      padding: 0;
+      margin: 5%;
+      margin-top: 0;
+    }
+    .cooperation_container .labellist .label button {
+      height: 38px;
+    }
+
+    .contact_container .contactmail p {
+      padding-bottom: 0;
+    }
+    .brand_width {
+      width: 32.7%;
+    }
+    .footer_container {
+      background-color: #f9f9f9;
+    }
+    .footer_container .map_container {
+      height: auto;
+    }
+    .footer_container .map_container .map {
+      width: 100%;
+      margin: 0;
+      padding-bottom: 10px;
+    }
+    .links {
+      border-top: 1px solid #d5d7d8;
+    }
+  }
+  @media (max-width: 350px) {  
+    .footer_container .map_container .map .address .tel {
+      /*margin-top: 0;*/
+    }
+  }

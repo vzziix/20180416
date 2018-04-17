@@ -1,0 +1,241 @@
+.main {
+  background-color: white;
+}
+.contact_container {
+  margin-top: -75px;
+  position: relative;
+  width: 74%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contact_container h1 {
+  padding-top: 53px;
+  text-align: center;
+  font-size: 1.875em;
+  margin: 0;
+  margin-bottom: 26px;
+}
+.contact_container p {
+  text-align: center;
+  font-size: 1.0em;
+  color: #666666;
+  margin: 0;
+  margin-bottom: 38px;
+}
+.contact_container p a {
+  color: #00b4f8;
+  text-decoration: none;
+}
+.contact_container .form {
+  width: 100%;
+}
+.contact_container .input_container {
+  position: relative;
+  width: 47%;
+  float: left;
+  height: 47px;
+  border: solid 1px #dcdcdc;
+  margin-bottom: 14px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.contact_container .input_container label {
+  float: left;
+  line-height: 50px;
+  margin-left: 15px;
+  /*font-size: 14px;*/
+  font-size: .875em;
+  color: #666666;
+}
+.contact_container .input_container label span {
+  float: left;
+  left: 75px;
+}
+.contact_container .input_container img {
+  position: absolute;
+  right: 0;
+}
+.contact_container .input_container input {
+  float: left;
+  height: 47px;
+  border: transparent;
+  width: 68%;
+  right: 0;
+  outline: none;
+  font-size: .875em;
+  line-height: 47px;
+}
+.show {
+  display: block !important;
+}
+.hide {
+  display: none !important;
+}
+.contact_container .input_container .list {
+  display: none;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  top: 50px;  
+  border: solid 1px #dcdcdc;
+  background-color: white;
+  z-index: 1;
+  cursor: pointer;
+}
+.contact_container .input_container .list li {
+  float:left;
+  width: 33%;
+  margin: 0;
+  padding: 0;
+  line-height: 40px;
+  color: #666666;
+  text-align: center;
+  cursor: pointer;
+  list-style: none;
+}
+.contact_container .input_container .list li:hover {
+  background-color: #00b4f8;
+  color: white;
+}
+.contact_container .input_container .timelist li {
+  width: 96%;
+  text-align: left;
+  padding-left: 15px;
+}
+.contact_container .input_container .citylist {
+
+}
+.contact_container .form .input_container span {
+  line-height: 50px;
+  position: absolute;
+  right: 10px;
+} 
+.contact_container .form .lastinput {
+  width: 97%;
+  margin-bottom: 50px;
+  height: 145px;
+}
+.contact_container .form .lastinput  textarea {
+  height: 130px;
+  width: calc(100% - 85px);
+  outline: none;
+  border: transparent;
+  font-size: 14px;
+  line-height: 1.2em;
+  margin-top: 15px;
+  resize:none;
+}
+.contact_container .btn_submit {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 480px;
+  background-color: #00b4f8;
+  text-align: center;
+  color: white;
+  font-size: 1.125em;
+  height: 54px;
+  border: none;
+} 
+.contact_container .contactmail {
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+}
+.contact_container .contactmail p {
+  width: 100%;
+  margin-top: 45px; 
+  display: inline-block;
+  margin-bottom: 0;
+  padding-bottom: 48px;
+  font-size: 1.0em;
+}
+
+#sendbtn {
+  cursor: pointer;
+}
+
+.send-dialog-container{
+  position: fixed;
+  width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+}
+.send-dialog-container .send-mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(55,58,71);
+  opacity: .6;
+}
+.send-dialog-container .send-dialog {
+  position: absolute;
+  width: 300px;
+    height: 300px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: url("../images/send_dialog_bg_mobile.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin: auto;
+  text-align: center;
+  line-height: 26px;
+}
+.send-dialog-container .send-dialog .send-content {
+  margin-top: 55%;
+}
+@media (max-width:768px) {
+  .fixedbar img {width: 28.27%;}
+  .mobile_menu .background {
+  margin-top: 16%;
+  }
+  .contact_container {
+    margin-top: 0;
+    width: 88%;
+  }
+  .contact_container h1 {
+    margin-bottom: 40px;
+    font-size: 1.25em;
+    margin-top: -8px;
+  }
+  .contact_container p {
+    line-height: 1.625em;
+    margin-bottom: 40px;
+  }
+  .contact_container p a {
+    /*display: block;*/
+  }
+  .contact_container .input_container {
+    width: 95%;
+  }
+  .contact_container .form .lastinput {
+    width: 95%;
+    margin-bottom: 47px;
+    height: 123px;
+  }
+  .contact_container .form .lastinput  textarea {
+    width: calc(100% - 90px);
+    height: 100px;
+    background-color: transparent;
+    position: absolute;
+  }
+  .contact_container .btn_submit {
+    width: 98%;
+    margin-left: 3%;
+  }
+  .contact_container .contactmail {
+    width: 100%;
+    padding-bottom: 40px;
+  }
+  .contact_container .contactmail p {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 0;
+    margin-top: 33px;
+  }
+}

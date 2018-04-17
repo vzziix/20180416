@@ -1,0 +1,617 @@
+.underline {
+  display: inline-block;
+  border-bottom: 10px solid #8cd5f5;
+  font-size: inherit;
+  height: 20px;
+  font-weight: bold;
+}
+
+
+.image_container {
+    width: 1680px;
+}
+
+/*.banner_container {
+    max-width: 1680px;
+    float: none;
+    margin: 0 auto;
+}*/    /*多照片轮换banner格式*/
+.managers_container{
+	overflow: hidden;
+}
+.chooselabel {
+    margin-top: -70px;
+    width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: solid 1px #f0f0f0;
+}
+
+.chooselabel ul {
+    height: 70px;
+    list-style: none;
+    width: 40%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.chooselabel ul li {
+    margin: 0;
+    padding: 0;
+    float: left;
+    line-height: 68px;
+    font-size: 1.0em;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.chooselabel ul li[name="join"] {
+    float: right;
+}
+
+.chooselabel ul .active {
+    color: #00b4f8;
+    border-bottom: solid 2px #bfbfbf;
+}
+
+.contact_container {
+    margin-top: 0;
+}
+
+.aboutus_container {
+    width: 100%;
+}
+
+.aboutus_container .content1 {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: solid 1px #f0f0f0;
+}
+
+.aboutus_container .content1 h1 {
+    text-align: center;
+    font-size: 1.375em;
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
+
+.aboutus_container .content1 .plist {
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    overflow: hidden;
+}
+
+.aboutus_container .content1 .toblog {
+    width: 167px;
+    margin: 0 auto;
+    background-color: #00b4f8;
+    line-height: 40px;
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.joinus_container .content1 .toblog {
+    width: 167px;
+    margin: 0 auto;
+    background-color: #00b4f8;
+    line-height: 40px;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.content1 .toblog a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.aboutus_container .content1 p {
+    float: left;
+    width: 46%;
+    margin: 0;
+    line-height: 1.76em;
+    margin-right: 2%;
+    margin-left: 2%;
+    font-size: .875em;
+    color: #666666;
+    padding-bottom: 40px;
+}
+
+.aboutus_container .content2 {
+    width: 100%;
+}
+
+.aboutus_container .content2 h1 {
+    text-align: center;
+    font-size: 1.375em;
+    margin-top: 39px;
+    letter-spacing: 1.8px;
+    margin-bottom: 30px;
+}
+
+.aboutus_container .content2 p {
+    text-align: center;
+    font-size: .875em;
+    margin-top: -10px;
+    margin-bottom: 40px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8em;
+}
+
+.aboutus_container .content2 .managers_container .manager {
+    width: 33.33%;
+    float: left;
+}
+
+.aboutus_container .content2 .managers_container .manager img {
+    width: 100%;
+}
+
+.aboutus_container .content2 .managers_container .manager .manger_content {
+    float: left;
+    width: 100%;
+    height: auto;
+    min-height: 260px;
+}
+
+.aboutus_container .content2 .managers_container .manager h1 {
+    text-align: center;
+    font-weight: bolder;
+    font-size: 16px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 16px;
+    letter-spacing: 0;
+}
+
+.aboutus_container .content2 .managers_container .manager h2 {
+    text-align: center;
+    color: #666666;
+    font-size: 14px;
+    margin: 0 auto;
+    margin-bottom: 28px;
+}
+
+.aboutus_container .content2 .managers_container .manager p {
+    text-align: left;
+    font-size: 12px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    line-height: 20px;
+}
+
+.aboutus_container .content2 .imglist {
+    width: 100%;
+    overflow: hidden;
+    padding-bottom: 17px;
+}
+
+.aboutus_container .content2 .imglist img {
+    width: 50%;
+}
+
+.aboutus_container .content2 .imglist .badge {
+    width: 1000px;
+    position: absolute;
+}
+
+.aboutus_container .content2 .imglist .badge img {
+    width: 140px;
+    margin-left: calc(50% - 70px);
+    margin-top: 180px;
+}
+
+.aboutus_container .content2 img {
+    float: left;
+    margin: 0;
+    width: 100%;
+}
+
+.aboutus_container .content2 .labellist {
+    width: 40%;
+    height: 94px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -26px;
+}
+
+.aboutus_container .content2 .labellist .label {
+    margin-right: 10px;
+}
+
+.aboutus_container .content2 .photo {
+    padding-top: 40px;
+    overflow: hidden;
+    /*margin-left: 3px;*/
+    /*margin-right: 3px;*/
+}
+
+.aboutus_container .content2 .photo .avatar {
+    width: 12.5%;
+    float: left;
+    overflow: hidden;
+}
+
+.aboutus_container .content2 .photo .avatar img {
+    width: 100%;
+    float: left;
+    -webkit-transition: all .7s ease;
+    -moz-transition: all .7s ease;
+    -o-transition: all .7s ease;
+    -ms-transition: all .7s ease;
+    transition: all .7s ease;
+}
+
+.aboutus_container .content2 .photo .avatar:hover img {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.joinus_container .content1 {
+    width: 92%;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: solid 1px #f0f0f0;
+}
+
+.joinus_container .content1 h1 {
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.joinus_container .content1 p {
+    margin: 0;
+    font-size: .875em;
+    color: #666666;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.joinus_container .content1 .col_container {
+    width: 87%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    margin-bottom: 67px;
+}
+
+.joinus_container .content1 .col4 {
+    float: left;
+    width: 33%;
+}
+
+.joinus_container .content1 .col4 sup {
+    font-size: 25px;
+}
+
+.joinus_container .content1 .col4 h3 {
+    font-size: 3.125em;
+    text-align: center;
+    color: #00b4f8;
+    margin-bottom: 8px;
+    font-weight: lighter;
+    margin-left: 24px;
+    min-height: 70px;
+}
+
+.joinus_container .content1 .col4 h3 span {
+    font-weight: lighter;
+}
+
+.joinus_container .content1 .col4 p {
+    font-size: 1.0em;
+    color: #999999;
+}
+
+.joinus_container .content2 {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.joinus_container .content2 .labellist {
+    width: 60%;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+
+.joinus_container .content2 .labellist .label {
+    margin-top: 46px;
+    margin-left: 5px;
+    margin-right: 25px;
+}
+
+.joinus_container .content2 .positionlist {
+    width: 100%;
+    padding-bottom: 60px;
+    overflow: hidden;
+}
+
+.joinus_container .content2 .positionlist .position {
+    position: relative;
+    float: left;
+    margin-left: 57px;
+    margin-right: 10px;
+    padding-top: 48px;
+    margin-bottom: 15px;
+    width: 40%;
+    background-color: #f5f5f5;
+}
+
+.joinus_container .content2 .positionlist .position img {
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+    margin-left: 36%;
+    margin-top: 20px;
+}
+
+.joinus_container .content2 .positionlist .position h4 {
+    margin: 0;
+    text-align: center;
+    font-size: 1.375em;
+    color: #00b4f8;
+}
+
+.joinus_container .content2 .positionlist .position h5 {
+    margin: 0;
+    text-align: center;
+    font-size: .875em;
+    color: #999999;
+}
+
+.joinus_container .content2 .positionlist .position p {
+    margin-bottom: 10px;
+    margin-top: 27px;
+    margin-left: 52%;
+    font-size: 18px;
+    color: #00b4f8;
+}
+
+.joinus_container .content2 .positionlist .position_request {
+    background-color: #f5f5f5;
+    height: 620px;
+}
+
+.joinus_container .content2 .positionlist .position_request p {
+    padding: 18px;
+    text-align: left;
+    font-size: .875em;
+    line-height: 1.8em;
+    color: #000000;
+    margin: 0;
+    padding-bottom: 15px;
+}
+
+.joinus_container .content2 .positionlist .position_request .tosend {
+    position: absolute;
+    bottom: 0;
+    width: 80%;
+    text-align: center;
+    border-top: 2px solid #dbdbdb;
+    margin-left: 5%;
+}
+
+.joinus_container .content2 .positionlist .position_request .tosend a {
+    color: #00b4f8;
+    text-decoration: none;
+}
+
+.img-tile {
+    width: 210px;
+    height: 210px;
+    background-size: 210px 210px;
+    background-position: center;
+    float: left;
+}
+
+.img-tile-big {
+    width: 420px;
+    height: 420px;
+    background-size: 420px 420px;
+}
+
+@media (max-width:768px) {
+    .fixedbar img {
+        width: 28.53%;
+    }
+    .mobile_menu .background {
+        margin-top: 16%;
+    }
+    .chooselabel {
+        margin-top: 0;
+        width: 100%;
+    }
+    .chooselabel ul {
+        height: 56px;
+        width: 70%;
+        margin: 0 auto;
+    }
+    .chooselabel ul li {
+        height: 56px;
+        line-height: 56px;
+    }
+    .aboutus_container .content1 {
+        width: 100%;
+    }
+    .aboutus_container .content1 h1 {
+    	font-size: 22px;
+    	width: 80%;
+    	margin: 30px 10%;
+    }
+    .aboutus_container .content1 .plist {
+        width: 100%;
+        padding-bottom: 37px;
+    }
+    .aboutus_container .content1 p {
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        text-align: center;
+        padding-bottom: 0;
+        font-size: 0.9em;
+        line-height: 1.85em;
+    }
+    .aboutus_container .content2 p {
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        font-size: 1.0em;
+        line-height: 28px;
+        margin-bottom: 53px;
+    }
+    .aboutus_container .content2 .labellist {
+        width: 100%;
+        height: 70px;
+    }
+    .aboutus_container .content2 .labellist .label {
+        width: 22%;
+        padding-left: 5%;
+        padding-right: 2%;
+    }
+    .aboutus_container .content2 .imglist {
+        padding-bottom: 2px;
+    }
+    .aboutus_container .content2 .imglist img {
+        width: 100%;
+    }
+    .aboutus_container .content2 .imglist .badge {
+        width: 100%;
+    }
+    .aboutus_container .content2 .imglist .badge img {
+        margin-top: calc(100% - 70px);
+    }
+    .aboutus_container .content2 .photo {
+        margin-top: -55px;
+    }
+    .aboutus_container .content2 .photo img {
+        width: 14.28%;
+    }
+    .joinus_container .content1,
+    .joinus_container .content2 {
+        width: 100%;
+    }
+    .joinus_container .content1 h1 {
+        margin-top: 45px;
+        margin-bottom: 40px;
+        font-size: 1.25em;
+    }
+    .joinus_container .content1 p {
+        font-size: 1.0em;
+        line-height: 25px;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-bottom: 37px;
+    }
+    .joinus_container .content1 .col_container {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+    .joinus_container .content1 .col4 {
+        width: 50%;
+        height: 150px;
+    }
+    .joinus_container .content1 .col4 h3 {
+        margin-top: 0;
+        margin-bottom: 2px;
+        font-size: 2.5em;
+        font-weight: lighter;
+        min-height: 56px;
+    }
+    .joinus_container .content1 .col4 p {
+        font-size: .875em;
+    }
+    .aboutus_container .content2 h1 {
+        font-size: 1.25em;
+        margin-top: 43px;
+        margin-bottom: 46px;
+    }
+    .joinus_container .content2 .labellist {
+        width: 100%;
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+    .joinus_container .content2 .labellist .label {
+        margin-top: 0;
+        margin-bottom: 10px;
+        width: 22%;
+        padding-left: 1.8%;
+        padding-right: 0;
+    }
+    .joinus_container .content2 .labellist .label button {
+        /*font-size: 1.0em;*/
+        /*height: 38px;*/
+    }
+    .joinus_container .content2 .positionlist {
+        padding-bottom: 50px;
+    }
+    .joinus_container .content2 .positionlist .position {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        padding-top: 30px;
+    }
+    .joinus_container .content2 .positionlist .position img {
+        margin-top: 1%;
+    }
+    .joinus_container .content2 .positionlist .position h4 {
+        font-size: 1.0em;
+    }
+    .joinus_container .content2 .positionlist .position h5 {
+        margin-top: 1px;
+        font-size: .75em;
+        margin-bottom: 17px;
+    }
+    .joinus_container .content2 .positionlist .position p {
+        margin-bottom: 24px;
+    }
+    .joinus_container .content2 .positionlist .position_request {
+        padding-bottom: 20px;
+        height: auto;
+    }
+    .joinus_container .content2 .positionlist .position_request p {
+        padding-top: 20px;
+        line-height: 1.6em;
+        padding-bottom: 0;
+        margin-bottom: 10px;
+        font-size: 1.0em;
+        margin-left: none;
+    }
+    .joinus_container .content2 .positionlist .position_request .tosend {
+        position: relative;
+        font-size: 12px;
+        padding-left: 0;
+        padding-right: 0;
+        width: 90%;
+    }
+    .aboutus_container .content2 .managers_container .manager {
+        width: 50%;
+    }
+    .aboutus_container .content2 .managers_container .manager h1 {
+        font-size: 16px;
+        margin-top: 20px;
+        margin-bottom: 6px;
+    }
+    .aboutus_container .content2 .managers_container .manager h2 {
+        width: 80%;
+        font-size: 12px;
+        margin-bottom: 16px;
+    }
+    .aboutus_container .content2 .managers_container .manager p {
+        width: 80%;
+        margin-bottom: 16px;
+    }
+}

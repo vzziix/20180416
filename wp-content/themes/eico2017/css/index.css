@@ -1,0 +1,160 @@
+.main .submenu {  
+  float: left;
+  margin-top: -60px;
+}
+
+.submenu .submenu_arrow {
+  top: 50%;
+  position: absolute;
+  right: 6%;
+  width: 9px;
+  transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%, -50%);
+
+}
+.submenu a {
+  float: left;
+  display: block;
+  position: relative;
+}
+.submenu a .to_submenu {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  color: white;
+}
+.submenu a .to_submenu_CN {
+  margin-top: 50px;
+  font-size: 25px;
+  font-weight: 400;
+}
+.submenu a .to_submenu_EN {
+  font-size: 12px;
+  margin-top: 94px;
+  opacity: 0.6;
+  letter-spacing: 2px;
+  transform: scale(1,1.4);
+  -webkit-transform: scale(1,1.4);
+}
+.underline {
+  display: inline-block;
+  border-bottom: 10px solid #8cd5f5;
+  font-size: inherit;
+  height: 20px;
+  font-weight: bold;
+}
+
+.article {
+  float: left;
+  width: 100%;
+  background-color: white;
+}
+.article p {
+  text-align: center;
+  color: #333333;
+  font-size: 1.375em;
+  margin: 55px 10%;
+}
+.mobile_article {
+  float: left;
+  width: 100%;
+  background-color: white;
+}
+.mobile_article p {
+  text-align: center;
+  color: #000000;
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10%;
+  padding-bottom: 10%;
+  font-size: 22px;
+width: 80%;
+line-height: 30px;
+}
+  
+.projects {
+    width: 100%;
+    overflow: hidden;
+    font-size: 0px;
+    background-color: #FFFFFF;
+    border-top: 1px solid #f3f3f3;
+    border-bottom: 1px solid #f3f3f3;
+}
+
+.projects .project {
+    width: 24.8%;
+    float: left;
+    overflow: hidden;
+    background-color: #ffffff;
+    border-top: 1px solid #f3f3f3;
+    margin-top: -1px;
+    border-left: 1px solid #f3f3f3;
+    margin-left: -1px;
+}
+.projects .project img{
+    width: 100%;
+}
+@media (max-width:768px) {
+  .banner_container {
+    margin-top: 16%;
+  }
+  .slick-dots {
+    bottom: 10px !important;
+  }
+  .mobile_submenu {
+    float: left;
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .eico_black {
+    background-image: url("../images/eico_black.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    float: right;
+    position: relative;
+    z-index: 1;
+  }
+  .mobile_submenu .submenu_arrow {
+    top: 50%;
+    position: absolute;
+    right: 2%;
+    width: 3%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%, -50%);
+
+  }
+  .mobile_submenu a {
+    width: 100%;
+    display: block;
+    position: relative;
+  }  
+  .mobile_submenu a .to_submenu {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: white;
+  }
+  .mobile_submenu a .to_submenu_CN {
+    margin-top: 14%;
+    font-size: 22px;
+    font-weight: 400;
+  }
+  .mobile_submenu a .to_submenu_EN {
+    font-size: 8px;
+    margin-top: 23%;
+    opacity: 0.6;
+    letter-spacing: 2px;
+    font-weight: 400;
+    transform: scale(1,1.4);
+    -webkit-transform: scale(1, 1.4);
+  }
+  .mobile_submenu a img {
+    width: 100%;
+  }
+  
+ .projects .project {
+    width: 49.3%;
+  }
+}
