@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUXD AI 对话助手</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/styles/github.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/lib/core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/lib/common.min.js"></script>
+    <style>
+        html, body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            height: 100%;
+            overflow: hidden;
+        }
+        body {
+            display: flex;
+        }
+        .sidebar {
+            display: flex;
+            width: 280px;
+            padding: 20px 12px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            flex-shrink: 0;
+            align-self: stretch;
+            border-right: 1px solid #E0E1E3;
+            background: #F3F4F6;
+        }
+        .main-content {
+            display: flex;
+            padding: 0 40px 40px 40px;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            flex: 1 0 0;
+            align-self: stretch;
+            overflow: hidden;
+            background-color: white;
+        }
+        .chat-container {
+            margin: 0 auto;
+            overflow-y: auto;
+            width: 800px;
+            max-width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+            flex: 1;
+            padding: 32px 0 !important;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        .chat-container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari and Opera */
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 16px;
+            border-radius: 8px;
+        }
+        .message pre {
+            background-color: #F7F7F7;
+            border-radius: 6px;
+            padding: 16px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            width: 100%;
+            max-width: 100%;
+            font-size: inherit;
+            line-height: 1.6;
+            font-family: "PingFang SC", Arial, sans-serif;
+            color: #000;
+            box-sizing: border-box;
+        }
+        .message code {
+            background-color: rgba(175,184,193,0.2);
+            border-radius: 6px;
+            padding: 0.1em 0.4em;
+            font-size: inherit;
+            font-family: "PingFang SC", Arial, sans-serif;
+            color: #000;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+        .message pre code {
+            background-color: transparent;
+            padding: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .message p {
+            margin: 0 0 0 0;
+            line-height: 1.6;
+        }
+        .message ul, .message ol {
+            margin: 0 0 0 0;
+            padding-left: 2em;
+            line-height: 1.8;
+        }
+        .message h1, .message h2, .message h3, .message h4, .message h5, .message h6 {
+            margin: 10px 0 10px 0;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid rgba(0, 0, 0, 0.10);
+            margin: 16px 0;
+        }
+        .message h1 { font-size: 2em; }
+        .message h2 { font-size: 1.5em; }
+        .message h3 { font-size: 1.25em; }
+        .message table {
+            border-collapse: collapse;
+            margin: 16px 0;
+            width: 100%;
+        }
+        .message table th, .message table td {
+            border: 1px solid #d0d7de;
+            padding: 6px 13px;
+        }
+        .message table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        .message blockquote {
+            margin: 0 0 16px 0;
+            padding: 0 1em;
+            color: #656d76;
+            border-left: 0.25em solid #d0d7de;
+        }
+        .user-message {
+            background-color: #F7F7F7;
+            margin: 0;
+            align-self: flex-end;
+            max-width: 400px;
+        }
+        .ai-message {
+            margin: 0;
+            padding: 0;
+        }
+        .input-container {
+            display: flex;
+            width: 774px;
+            max-width: 90%;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.10);
+            background: #FFF;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+            margin: 0 auto;
+        }
+        textarea {
+            flex-grow: 1;
+            padding: 0;
+            border: none;
+            border-radius: 0;
+            resize: none;
+            outline: none;
+            font-family: "PingFang SC";
+            font-size: 16px;
+            color: #000;
+            line-height: 1.6;
+            height: 48px;
+            min-height: 48px;
+            max-height: 200px;
+            overflow-y: auto;
+            box-sizing: border-box;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        textarea::-webkit-scrollbar {
+            display: none; /* Chrome, Safari and Opera */
+        }
+        textarea:focus {
+            outline: none;
+            border: none;
+            box-shadow: none;
+        }
+        button {
+            padding: 10px;
+            background-color: rgba(33, 150, 243, 0);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        button img {
+            width: 16px;
+            height: 16px;
+            object-fit: contain;
+        }
+        button:hover {
+            background-color: #F3F4F6;
+        }
+        .history-container {
+            width: 280px;
+            overflow-y: auto;
+            margin-right: -10px;
+            padding-right: 10px;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        .history-container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari and Opera */
+        }
+        .chat-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        .chat-container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari and Opera */
+        }
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .history-item {
+            display: flex;
+            padding: 8px 12px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 4px;
+            align-self: stretch;
+            border-radius: 12px;
+            cursor: pointer;
+            margin: 5px 0;
+            color: #666;
+            font-family: "PingFang SC";
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+        .history-item:hover {
+            background-color: #E9EAEC;
+        }
+        .history-item .history-subtitle,
+        .history-item .delete-btn {
+            display: none;
+        }
+        .history-item.active {
+            display: flex !important;
+            padding: 16px 12px !important;
+            justify-content: space-between !important;
+            align-self: stretch !important;
+            border-radius: 12px !important;
+            background: #FFF !important;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04) !important;
+            font-family: "PingFang SC" !important;
+            border-left: none !important;
+            position: relative !important;
+        }
+        .history-item.active .history-text {
+            text-align: left;
+            flex-grow: 1;
+            padding: 5px;
+        }
+        .history-item .delete-btn {
+            display: none;
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            margin-left: auto;
+        }
+        .history-item.active .history-title {
+            color: #000;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+        }
+        .history-item.active .history-subtitle {
+            color: #999;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+        .history-item.active .history-subtitle,
+        .history-item.active .delete-btn {
+            display: block;
+        }
+        .history-item.active {
+            background-color: #bbdefb;
+            border-left: 4px solid #1976D2;
+        }
+        .history-text {
+            flex-grow: 1;
+            padding: 5px;
+            text-align: left;
+        }
+        .history-title {
+            font-weight: bold;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+        }
+        .history-subtitle {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 2px;
+        }
+        .delete-btn {
+            background-color: rgba(220, 53, 69, 0);
+            padding: 7px 8px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .delete-btn img {
+            width: 16px;
+            height: 16px;
+        }
+        .delete-btn:hover {
+            background-color: #FFF4F4;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            align-self: stretch;
+            border-radius: 12px;
+            font-family: "PingFang SC";
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            background: linear-gradient(180deg, #000 0%, #666 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+        .logo img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+        .logo-author {
+            color: #999;
+            font-family: "PingFang SC";
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            -webkit-text-fill-color: #999;
+        }
+        .new-chat-btn {
+            display: flex;
+            padding: 12px;
+            align-items: center;
+            gap: 4px;
+            align-self: stretch;
+            border-radius: 12px;
+            border: 1px solid #C2D6F8;
+            background: #E5EBF7;
+            color: #0057FF;
+            font-family: "PingFang SC";
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            cursor: pointer;
+        }
+        .new-chat-btn img {
+            width: 16px;
+            height: 16px;
+            object-fit: contain;
+        }
+        .new-chat-btn:hover {
+            background: #DAE4F7;
+        }
+        .loading {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            background-color: #F7F7F7;
+            border-radius: 8px;
+            color: #000;
+            align-self: flex-start;
+            margin: 0;
+        }
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-left: 10px;
+            border: 2px solid #D9D9D9;
+            border-right-color: transparent;
+            border-radius: 50%;
+            animation: rotate 1s linear infinite;
+            width: 16px;
+            height: 16px;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .new-chat-btn:disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        textarea:disabled {
+            background-color: white;
+        }
+        button:disabled {
+            background-color: white;
+            cursor: not-allowed;
+        }
+        .loading-button {
+            animation: rotate 1s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        button:disabled {
+            background-color: white;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo"><img src="https://i.ibb.co/bnXX0KK/logo.png" alt="PUXD AI Logo">PUXD AI<span class="logo-author">By vzziix</span></div>
+        <button class="new-chat-btn" onclick="startNewChat()"><img src="res/新建图标.png" alt="新建图标">新建对话</button>
+        <div class="history-container">
+            <div class="history-header">
+            </div>
+            <div id="historyList"></div>
+        </div>
+    </div>
+    <div class="main-content">
+        <div id="chatContainer" class="chat-container">
+
+        </div>
+        <div class="input-container">
+            <textarea id="userInput" placeholder="请输入您的问题..."></textarea>
+            <button onclick="sendMessage()"><img src="res/发送按钮.png" alt="发送图标"></button>
+        </div>
+    </div>
+
+    <script>
+        // 配置 marked 选项
+        marked.setOptions({
+            renderer: new marked.Renderer(),
+            highlight: function(code, lang) {
+                if (lang && hljs.getLanguage(lang)) {
+                    try {
+                        return hljs.highlight(code, { language: lang }).value;
+                    } catch (err) {}
+                }
+                return code;
+            },
+            langPrefix: 'hljs language-',
+            pedantic: false,
+            gfm: true,
+            breaks: true,
+            sanitize: false,
+            smartypants: false,
+            xhtml: false
+        });
+        // 格式化时间函数
+        function formatTime(date) {
+            const now = new Date();
+            const diff = now - date;
+            const minute = 60 * 1000;
+            const hour = 60 * minute;
+            const day = 24 * hour;
+
+            if (diff < minute) {
+                return '刚刚';
+            } else if (diff < hour) {
+                return Math.floor(diff / minute) + ' 分钟前';
+            } else if (diff < day) {
+                return Math.floor(diff / hour) + ' 小时前';
+            } else if (diff < 7 * day) {
+                return Math.floor(diff / day) + ' 天前';
+            } else {
+                return date.toLocaleDateString('zh-CN', { 
+                    year: 'numeric', 
+                    month: '2-digit', 
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            }
+        }
+
+        // 存储当前对话的消息历史
+        let currentMessages = [];
+        // 存储所有历史对话
+        let chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || [];
+
+        // 初始化页面时加载历史记录
+        function loadHistory() {
+            const historyList = document.getElementById('historyList');
+            historyList.innerHTML = '';
+            chatHistory.forEach((chat, index) => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+                
+                const textDiv = document.createElement('div');
+                textDiv.className = 'history-text';
+                
+                const titleDiv = document.createElement('div');
+                titleDiv.className = 'history-title';
+                titleDiv.textContent = chat.title || `对话 ${index + 1}`;
+                
+                textDiv.appendChild(titleDiv);
+                
+                // 只在激活状态下添加时间显示
+                if (currentMessages === chat.messages) {
+                    const timeDiv = document.createElement('div');
+                    timeDiv.className = 'history-subtitle';
+                    timeDiv.textContent = formatTime(new Date(chat.timestamp));
+                    textDiv.appendChild(timeDiv);
+                }
+                historyItem.onclick = () => loadChat(index);
+                historyItem.appendChild(textDiv);
+                
+                // 如果是当前选中的对话，添加active类
+                if (currentMessages === chat.messages) {
+                    historyItem.className = 'history-item active';
+                }
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'delete-btn';
+                const deleteIcon = document.createElement('img');
+                deleteIcon.src = 'res/删除按钮.png';
+                deleteIcon.alt = '删除';
+                deleteBtn.appendChild(deleteIcon);
+                const deleteText = document.createTextNode('');
+                deleteBtn.appendChild(deleteText);
+                deleteBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    deleteChat(index);
+                };
+                historyItem.appendChild(deleteBtn);
+                
+                historyList.appendChild(historyItem);
+            });
+        }
+
+        // 加载特定的历史对话
+        function loadChat(index) {
+            if (index >= 0 && index < chatHistory.length) {
+                currentMessages = chatHistory[index].messages;
+                document.getElementById('chatContainer').innerHTML = '';
+                // 如果对话是空的，添加欢迎消息
+                if (currentMessages.length === 0) {
+                    const welcomeMessage = {
+                        role: 'assistant',
+                        content: '你好！我是 PUXD AI，由 DeepSeek-V3 驱动。请告诉我你需要什么帮助！'
+                    };
+                    currentMessages.push(welcomeMessage);
+                }
+                displayMessages();
+                loadHistory(); // 重新加载历史记录以更新选中态
+            }
+        }
+
+        // 显示消息
+        function displayMessages() {
+            const chatContainer = document.getElementById('chatContainer');
+            chatContainer.innerHTML = '';
+            
+            if (currentMessages.length === 0) {
+                return;
+            }
+
+            currentMessages.forEach(msg => {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${msg.role === 'user' ? 'user-message' : 'ai-message'}`;
+                // 使用 marked 渲染 markdown
+                messageDiv.innerHTML = marked.parse(msg.content, {
+                    gfm: true,
+                    breaks: true,
+                    highlight: function(code, lang) {
+                        if (lang && hljs.getLanguage(lang)) {
+                            try {
+                                return hljs.highlight(code, { language: lang }).value;
+                            } catch (err) {}
+                        }
+                        return code;
+                    }
+                });
+                chatContainer.appendChild(messageDiv);
+            });
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        // 发送消息
+        async function sendMessage() {
+            const userInput = document.getElementById('userInput');
+            const sendButton = document.querySelector('.input-container button');
+            const message = userInput.value.trim();
+            if (!message) return;
+
+            // 禁用输入和更改发送按钮图标
+            userInput.disabled = true;
+            sendButton.disabled = true;
+            // 禁用新建对话按钮和所有历史记录项
+            const newChatBtn = document.querySelector('.new-chat-btn');
+            const historyItems = document.querySelectorAll('.history-item');
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            
+            newChatBtn.disabled = true;
+            newChatBtn.style.opacity = '0.5';
+            historyItems.forEach(item => {
+                item.style.pointerEvents = 'none';
+                item.style.opacity = '0.5';
+            });
+            deleteButtons.forEach(btn => {
+                btn.disabled = true;
+                btn.style.opacity = '0.5';
+            });
+            const sendButtonImg = sendButton.querySelector('img');
+            sendButtonImg.src = 'res/停止按钮.png';
+            sendButtonImg.alt = '停止';
+            sendButtonImg.classList.add('loading-button');
+            userInput.placeholder = '我由 DeepSeek-V3 驱动，请稍候...';
+
+            // 添加用户消息
+            currentMessages.push({ role: 'user', content: message });
+            displayMessages();
+            userInput.value = '';
+            // 重置输入框高度
+            userInput.style.height = '48px';
+
+            // 添加加载提示
+            const chatContainer = document.getElementById('chatContainer');
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'loading';
+            loadingDiv.textContent = 'PUXD AI 正在思考中，请稍候';
+            chatContainer.appendChild(loadingDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+
+            try {
+                // 这里需要替换为您的 API Key
+                const response = await fetch('https://api.deepseek.com/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer sk-81d70a55225743ceab8bfc65a34f01ae'
+                    },
+                    body: JSON.stringify({
+                        model: 'deepseek-chat',
+                        messages: currentMessages,
+                        stream: true
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                // 创建一个新的消息div用于流式输出
+                const streamMessageDiv = document.createElement('div');
+                streamMessageDiv.className = 'message ai-message';
+                chatContainer.appendChild(streamMessageDiv);
+
+                // 移除加载提示
+                const loadingDiv = document.querySelector('.loading');
+                if (loadingDiv) loadingDiv.remove();
+
+                let fullContent = '';
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+
+                while (true) {
+                    const {value, done} = await reader.read();
+                    if (done) break;
+                    
+                    const chunk = decoder.decode(value);
+                    const lines = chunk.split('\n');
+                    
+                    for (const line of lines) {
+                        if (line.trim() === '') continue;
+                        if (line.trim() === 'data: [DONE]') continue;
+                        
+                        try {
+                            const jsonData = JSON.parse(line.replace('data: ', ''));
+                            if (jsonData.choices[0].delta.content) {
+                                fullContent += jsonData.choices[0].delta.content;
+                                streamMessageDiv.innerHTML = marked.parse(fullContent, {
+                                    gfm: true,
+                                    breaks: true,
+                                    highlight: function(code, lang) {
+                                        if (lang && hljs.getLanguage(lang)) {
+                                            try {
+                                                return hljs.highlight(code, { language: lang }).value;
+                                            } catch (err) {}
+                                        }
+                                        return code;
+                                    }
+                                });
+                                chatContainer.scrollTop = chatContainer.scrollHeight;
+                            }
+                        } catch (e) {
+                            console.error('Error parsing stream:', e);
+                        }
+                    }
+                }
+
+                // 将完整的回复添加到消息历史
+                const aiMessage = {
+                    role: 'assistant',
+                    content: fullContent
+                };
+                currentMessages.push(aiMessage);
+
+                // 如果这是新对话，将其添加到历史记录中
+                if (!chatHistory.some(chat => chat.messages === currentMessages)) {
+                    const newChat = {
+                        id: Date.now(),
+                        title: message,
+                        messages: currentMessages,
+                        timestamp: new Date().toISOString()
+                    };
+                    chatHistory.unshift(newChat);
+                    localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+                }
+
+                // 重新启用输入和恢复所有按钮状态
+                userInput.disabled = false;
+                sendButton.disabled = false;
+                const sendButtonImg = sendButton.querySelector('img');
+                sendButtonImg.src = 'res/发送按钮.png';
+                sendButtonImg.alt = '发送图标';
+                sendButtonImg.classList.remove('loading-button');
+                userInput.placeholder = '请输入您的问题...';
+                userInput.focus();
+
+                // 恢复新建对话按钮和历史记录项的可用状态
+                const newChatBtn = document.querySelector('.new-chat-btn');
+                const historyItems = document.querySelectorAll('.history-item');
+                const deleteButtons = document.querySelectorAll('.delete-btn');
+                
+                newChatBtn.disabled = false;
+                newChatBtn.style.opacity = '1';
+                historyItems.forEach(item => {
+                    item.style.pointerEvents = 'auto';
+                    item.style.opacity = '1';
+                });
+                deleteButtons.forEach(btn => {
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                });
+
+                // 更新当前对话的消息和标题
+                const currentChatIndex = chatHistory.findIndex(chat => chat.messages === currentMessages);
+                if (currentChatIndex !== -1) {
+                    const currentChat = chatHistory[currentChatIndex];
+                    // 如果当前对话只有一条用户消息，则将其设置为标题
+                    if (currentMessages.filter(msg => msg.role === 'user').length === 1) {
+                        currentChat.title = message;
+                    }
+                    currentChat.timestamp = new Date().toISOString(); // 更新时间戳
+                    localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+                    loadHistory();
+                    // 保持当前对话选中状态
+                    loadChat(currentChatIndex);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('发送消息时出错，请重试');
+                // 发生错误时也需要移除加载提示并重新启用所有按钮
+                const loadingDiv = document.querySelector('.loading');
+                if (loadingDiv) loadingDiv.remove();
+                userInput.disabled = false;
+                sendButton.disabled = false;
+                const sendButtonImg = sendButton.querySelector('img');
+                sendButtonImg.src = 'res/发送按钮.png';
+                sendButtonImg.alt = '发送图标';
+                userInput.focus();
+
+                // 恢复新建对话按钮和历史记录项的可用状态
+                const newChatBtn = document.querySelector('.new-chat-btn');
+                const historyItems = document.querySelectorAll('.history-item');
+                const deleteButtons = document.querySelectorAll('.delete-btn');
+                
+                newChatBtn.disabled = false;
+                newChatBtn.style.opacity = '1';
+                historyItems.forEach(item => {
+                    item.style.pointerEvents = 'auto';
+                    item.style.opacity = '1';
+                });
+                deleteButtons.forEach(btn => {
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                });
+            }
+        }
+
+        // 监听回车键发送消息
+        // 自动调整textarea高度的函数
+        function autoResizeTextarea(textarea) {
+            textarea.style.height = '48px';
+            const scrollHeight = textarea.scrollHeight;
+            textarea.style.height = Math.min(scrollHeight, 200) + 'px';
+        }
+
+        // 为textarea添加输入事件监听器
+        const userInput = document.getElementById('userInput');
+        userInput.addEventListener('input', function() {
+            autoResizeTextarea(this);
+        });
+
+        document.getElementById('userInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // 删除对话
+        function deleteChat(index) {
+            if (confirm('确定要删除这个对话吗？')) {
+                // 检查是否删除的是当前对话
+                const isCurrentChat = chatHistory[index].messages === currentMessages;
+                
+                // 删除对话
+                chatHistory.splice(index, 1);
+                
+                // 如果删除后没有对话记录，创建一个新的对话
+                if (chatHistory.length === 0) {
+                    startNewChat();
+                    return;
+                }
+                
+                localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+                
+                // 删除后自动加载最新的对话
+                loadChat(0);
+                document.getElementById('userInput').value = '';
+                
+                // 重新加载历史记录
+                loadHistory();
+            }
+        }
+
+        // 开始新对话
+        function startNewChat() {
+            // 获取当前最大对话编号
+            let maxNumber = 0;
+            chatHistory.forEach(chat => {
+                const match = (chat.title || '').match(/对话(\d+)/);
+                if (match) {
+                    const num = parseInt(match[1]);
+                    maxNumber = Math.max(maxNumber, num);
+                }
+            });
+
+            // 创建新的历史对话
+            const newChat = {
+                id: Date.now(),
+                title: `对话${maxNumber + 1}`,
+                messages: [],
+                timestamp: new Date().toISOString()
+            };
+            chatHistory.unshift(newChat);
+            localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+            
+            // 加载新创建的对话
+            currentMessages = newChat.messages;
+            document.getElementById('chatContainer').innerHTML = '';
+            document.getElementById('userInput').value = '';
+
+            // 添加欢迎消息
+            const welcomeMessage = {
+                role: 'assistant',
+                content: '你好！我是 PUXD AI，由 DeepSeek-V3 驱动。请告诉我你需要什么帮助！'
+            };
+            currentMessages.push(welcomeMessage);
+            displayMessages();
+            loadHistory();
+        }
+
+        // 初始化加载历史记录
+        loadHistory();
+        // 如果没有历史记录，自动创建一个新对话
+        if (chatHistory.length === 0) {
+            startNewChat();
+        } else {
+            // 如果有历史记录，自动加载最新的对话
+            loadChat(0);
+        }
+    </script>
+</body>
+</html>
